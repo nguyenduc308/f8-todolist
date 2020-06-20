@@ -12,5 +12,31 @@
 
         background-color: $warning-color-light;
         box-shadow: 1px 1px 2px rgba($color: #000000, $alpha: .2);
+        &:hover {
+            animation: smooth-move 800ms ease-in;
+        }
+        @keyframes smooth-move {
+            0% {
+                margin-top: -8px;
+            }
+            20% {
+                margin-top: -4px;
+            }
+            40% {
+                margin-top: 0;
+            }
+            60% {
+                margin-top: -4px;
+            }
+            80% {
+                margin-top: 0px;
+            }
+            90% {
+                margin-top: 2px;
+            }
+            100% {
+                margin-top: 0;
+            }
+        }
     }   
 }
