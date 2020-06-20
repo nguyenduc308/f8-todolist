@@ -93,10 +93,12 @@ class TodoList {
         this.render(storage.items);
     }
     addTask(name, level) {
-        const task = new TodoItem(name, level);
-        storage.addItem(task);
-        const itemElement = this.createItemElement(task);
-        this.listElement.insertBefore(itemElement, this.listElement.childNodes[0])
+        if(name.trim()) {
+            const task = new TodoItem(name, level);
+            storage.addItem(task);
+            const itemElement = this.createItemElement(task);
+            this.listElement.insertBefore(itemElement, this.listElement.childNodes[0])
+        }
     }
     deleteTask(id) {
         const items = storage.removeItem(id);
@@ -110,6 +112,13 @@ class TodoList {
             this.render(updated)
         }
     }
+    updateName(id, name) {
+        const updated = storage.updateItem(id, {name});
+        if(updated) {
+            this.render(updated)
+        }
+    }
+
     createItemElement(item) {
         let nodeItem = document.createElement(this.config.item.element);
         const attrs = this.config.item.attrs;
@@ -118,9 +127,13 @@ class TodoList {
             nodeItem.setAttribute(`${attr}`, `${attrs[attr]}`);
         });
         nodeItem.setAttribute('data-level', `${item.level}`);
-        nodeItem.setAttribute('data-completed', `${item.isDone}`)
+        nodeItem.setAttribute('data-completed', `${item.isDone}`);
+        nodeItem.setAttribute('data-id', `${item.id}`);
         const itemContent = `
-            <div class="todo-item__content">
+            <div 
+            class="todo-item__content"
+            data-edit="content" 
+            >
                 ${item.name}
             </div>
             <div 
@@ -146,9 +159,36 @@ class TodoList {
         })
     }
 }
-const todoList = new TodoList(CONFIG);
-todoList.init()
+function handleEvent(event) {
+    const element = event.target;
+    const parentElement = element.parentNode;
+    const { id, completed } = parentElement.dataset;
+    if(element.hasAttribute('data-action')) {
+        switch (element.dataset.action) {
+            case "delete":
+                todoList.deleteTask(id);
+                break;
+            case "status":
+                todoList.updateStatus(id);
+                break;
+            default:
+                return;
+        }
+    }
+    if(element.hasAttribute('data-edit')) {
+        if(completed === 'false') {
+            element.setAttribute('contenteditable', 'true');
+            element.addEventListener("blur", function(e) {
+                todoList.updateName(id, element.innerHTML);
+            }, false);
+        }
+    }
+}
 
+const todoList = new TodoList(CONFIG);
+
+//Started;
+todoList.init()
 document
     .querySelector('#task-name')
     .addEventListener('keyup', function(e) {
@@ -159,21 +199,7 @@ document
     });
 document
     .querySelector(CONFIG.parent.selector)
-    .addEventListener('click',function(e) {
-        const element = e.target;
-        //@Handle Events:
-        if(element.hasAttribute('data-action')) {
-            const parentActionElement = element.parentNode;
-            const { id } = parentActionElement.dataset;
-            switch (element.dataset.action) {
-                case "delete":
-                    todoList.deleteTask(id);
-                    break;
-                case "status":
-                    todoList.updateStatus(id);
-                    break;
-                default:
-                    return;
-            }
-        }
-    })
+    .addEventListener('click', function(e) {handleEvent(e)})
+document
+    .querySelector(CONFIG.parent.selector)
+    .addEventListener('dblclick', function(e) {handleEvent(e)})
