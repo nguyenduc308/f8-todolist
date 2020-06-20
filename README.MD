@@ -16,4 +16,4 @@
 Ví dụ: **f8-ducnguyen**
 
 # Tasks:
-    [https://docs.google.com/spreadsheets/d/15Fk2F10cMFHX1wLiXl62890uYfeQ9aa0WNXG_hI7XmU/](https://docs.google.com/spreadsheets/d/15Fk2F10cMFHX1wLiXl62890uYfeQ9aa0WNXG_hI7XmU/)
+    `https://docs.google.com/spreadsheets/d/15Fk2F10cMFHX1wLiXl62890uYfeQ9aa0WNXG_hI7XmU/`
