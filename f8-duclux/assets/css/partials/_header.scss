@@ -1,0 +1,21 @@
+.header {
+    box-shadow: 1px 2px 2px rgba($color: #000000, $alpha: .2);
+    &-content {
+        height: $header-height;
+        @include flex-row-center;
+    }
+    &-logo {
+        @include d-table;
+        &__img {
+            width: 3rem;
+            height: 3rem;
+            object-fit: cover;
+            object-position: center;
+        }
+        &__text {
+            @include d-table-child-center;
+            font-size: 2.8rem;
+            font-weight: bold;
+        }
+    }
+}

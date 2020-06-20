@@ -1,0 +1,20 @@
+@mixin d-table {
+    display: table;
+}
+@mixin d-table-child-center {
+    display: table-cell;
+    vertical-align: middle;
+}
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@mixin flex-row-center {
+    display: flex;
+    align-items: center;
+}
+@mixin flex-col-center {
+    display: flex;
+    justify-content: center;
+}
