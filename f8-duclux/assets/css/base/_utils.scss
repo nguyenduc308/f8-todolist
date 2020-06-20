@@ -1,0 +1,7 @@
+.icon {
+    width: 18px;
+    height: 18px;
+}
+.i-delete {
+    @include background(url('../images/i-delete.svg'), contain, no-repeat);
+}

@@ -26,6 +26,17 @@ ul, li, h1, h2, h3, h4, h5, h6 {
   padding: 0;
 }
 
+.icon {
+  width: 18px;
+  height: 18px;
+}
+
+.i-delete {
+  background: url("../images/i-delete.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .grid {
   display: block;
 }
@@ -399,23 +410,29 @@ ul, li, h1, h2, h3, h4, h5, h6 {
 .todo-control__form-input {
   border: 1px solid #efefef;
   border-radius: 4px;
-  padding: 0.6rem 1rem;
+  padding: 1.2rem 1rem;
   width: 100%;
+  font-size: 1.8rem;
 }
 
 .todo-list {
-  padding: 2rem;
+  padding: 0 0.6rem;
   min-height: 200px;
   display: flex;
+  flex-wrap: wrap;
 }
 .todo-list .todo-item {
   height: auto;
   min-height: 100px;
-  padding: 1rem;
-  margin-right: 1rem;
+  min-width: 200px;
+  padding: 1.4rem;
+  margin: 1.4rem;
   align-self: flex-start;
   border-radius: 4px;
-  background-color: #ffff9f;
+  position: relative;
+  font-size: 1.8rem;
+  border: 1px solid #856404;
+  background-color: #f7f7d0;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 .todo-list .todo-item:hover {
@@ -423,26 +440,47 @@ ul, li, h1, h2, h3, h4, h5, h6 {
 }
 @keyframes smooth-move {
   0% {
-    margin-top: -8px;
+    transform: translateY(-3px);
   }
   20% {
-    margin-top: -4px;
+    transform: translateY(-2px);
   }
   40% {
-    margin-top: 0;
+    transform: translateY(0px);
   }
   60% {
-    margin-top: -4px;
+    transform: translateY(-2px);
   }
   80% {
-    margin-top: 0px;
+    transform: translateY(0px);
   }
   90% {
-    margin-top: 2px;
+    transform: translateY(-1px);
   }
   100% {
-    margin-top: 0;
+    transform: translateY(0px);
   }
+}
+.todo-list .todo-item__actions {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.todo-list .todo-item__actions .icon {
+  margin-right: 8px;
+  opacity: 0.6;
+  cursor: pointer;
+}
+.todo-list .todo-item__actions .icon:hover {
+  opacity: 1;
+}
+.todo-list .todo-item[data-level="2"] {
+  background-color: #f8d7da;
+  border: 1px solid #721c24;
+  color: #721c24;
 }
 
 /*# sourceMappingURL=style.css.map */

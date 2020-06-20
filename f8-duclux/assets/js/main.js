@@ -21,7 +21,10 @@ class Storage {
         this.state = JSON.parse(localStorage.getItem(this.storageKey) || "{}");
     }
     get items() {
-        return this.state.items;
+        if(!!this.state.items && this.state.items.length > 0) {
+            return this.state.items;
+        }
+        return [];
     }
     get currentItem() {
         return this.state.currentItem;
@@ -32,8 +35,13 @@ class Storage {
         this.saved();
         return item;
     }
+    removeItem(id) {
+        this.state.items = this.state.items.filter(item => item.id !== id);
+        this.saved();
+        return this.state.items;
+    }
     itemIndex(id) {
-        return this.state.item.findIndex(item => item.id === id)
+        return this.state.items.findIndex(item => item.id === id)
     }
     saved() {
         localStorage.setItem(this.storageKey, JSON.stringify(this.state));
@@ -61,18 +69,36 @@ class TodoList {
     constructor(config = {}) {
         this.config = config;
         this.listElement = document.querySelector(this.config.parent.selector);
+        document
+            .querySelector(CONFIG.parent.selector)
+            .addEventListener('click',function(e) {
+                const element = e.target;
+                //@Handle Events:
+                if(element.hasAttribute('data-action')) {
+                    const parentActionElement = element.parentNode;
+                    const { id } = parentActionElement.dataset;
+                    switch (element.dataset.action) {
+                        case "delete":
+                            todoList.deleteTask(id);
+                            break;
+                        default:
+                            return;
+                    }
+                }
+            })
     }
-    
-
+    init() {
+        this.render(storage.items);
+    }
     addTask(name, level) {
         const task = new TodoItem(name, level);
         storage.addItem(task);
         const itemElement = this.createItemElement(task);
-        this.listElement.appendChild(itemElement);
+        this.listElement.insertBefore(itemElement, this.listElement.childNodes[0])
     }
     deleteTask(id) {
-        const index = storage.itemIndex(id);
-        console.log(index)
+        const items = storage.removeItem(id);
+        this.render(items);
     }
     createItemElement(item) {
         let nodeItem = document.createElement(this.config.item.element);
@@ -80,21 +106,40 @@ class TodoList {
         const attrsKey = Object.keys(attrs)
         attrsKey.forEach(attr => {
             nodeItem.setAttribute(`${attr}`, `${attrs[attr]}`);
-        } )
+        });
+        nodeItem.setAttribute('data-level', `${item.level}`);
         const itemContent = `
             <div class="todo-item__content">
                 ${item.name}
+            </div>
+            <div 
+            class="todo-item__actions"
+            data-id=${item.id}
+            >
+                <div
+                data-action="delete" 
+                class="icon i-delete"></div>
             </div>
             `
         nodeItem.innerHTML = itemContent;
         return nodeItem;
     }
+    render(tasks) {
+        this.listElement.innerHTML = "";
+        tasks.forEach(item => {
+            const itemElement = this.createItemElement(item);
+            this.listElement.appendChild(itemElement);
+        })
+    }
 }
 const todoList = new TodoList(CONFIG);
+todoList.init()
 
-document.querySelector('#task-name').addEventListener('keyup', function(e) {
-    if(e.keyCode === 13) {
-        todoList.addTask(this.value);
-        this.value = "";
-    }
-})
+document
+    .querySelector('#task-name')
+    .addEventListener('keyup', function(e) {
+        if(e.keyCode === 13) {
+            todoList.addTask(this.value);
+            this.value = "";
+        }
+    });
