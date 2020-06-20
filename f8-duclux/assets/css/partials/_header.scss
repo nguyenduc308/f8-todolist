@@ -1,11 +1,12 @@
 .header {
+    background-color: $white-color;
     box-shadow: 1px 2px 2px rgba($color: #000000, $alpha: .2);
     &-content {
         height: $header-height;
         @include flex-row-center;
     }
     &-logo {
-        @include d-table;
+        @include flex-center;
         &__img {
             width: 3rem;
             height: 3rem;
@@ -13,7 +14,7 @@
             object-position: center;
         }
         &__text {
-            @include d-table-child-center;
+            margin-left: 20px;
             font-size: 2.8rem;
             font-weight: bold;
         }
