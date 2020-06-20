@@ -37,6 +37,18 @@ ul, li, h1, h2, h3, h4, h5, h6 {
   background-repeat: no-repeat;
 }
 
+.i-check {
+  background: url("../images/i-check.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.i-done {
+  background: url("../images/i-done.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .grid {
   display: block;
 }
@@ -477,10 +489,18 @@ ul, li, h1, h2, h3, h4, h5, h6 {
 .todo-list .todo-item__actions .icon:hover {
   opacity: 1;
 }
+.todo-list .todo-item__actions .i-done {
+  opacity: 1;
+}
 .todo-list .todo-item[data-level="2"] {
   background-color: #f8d7da;
   border: 1px solid #721c24;
   color: #721c24;
+}
+.todo-list .todo-item[data-completed=true] {
+  background-color: #efefef;
+  text-decoration: line-through;
+  border: none;
 }
 
 /*# sourceMappingURL=style.css.map */

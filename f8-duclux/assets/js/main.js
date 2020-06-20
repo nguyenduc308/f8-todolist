@@ -35,6 +35,24 @@ class Storage {
         this.saved();
         return item;
     }
+    updateItem(id, item) {
+        let { items } = this.state;
+        let index = this.itemIndex(id);
+        if(index !== -1) {
+            const itemMatched = {...items[index]};
+            Object.keys(item).forEach(key => {
+                itemMatched[key] = item[key];
+            })
+            this.state.items = [
+                ...items.slice(0, index),
+                {...itemMatched},
+                ...items.slice(index+1)
+            ]
+            this.saved();
+            return items;
+        }
+        return false;
+    }
     removeItem(id) {
         this.state.items = this.state.items.filter(item => item.id !== id);
         this.saved();
@@ -50,10 +68,11 @@ class Storage {
 const storage = new Storage("TODO_DATA");
 
 class TodoItem {
-    id; name; status; level; timestamp;
+    id; name; isDone; level; timestamp;
     constructor(name, level = 1) {
         this.id = this.UID();
         this.name = name;
+        this.isDone = false;
         this.level = level;
         this.timestamp = new Date();
     }
@@ -69,23 +88,6 @@ class TodoList {
     constructor(config = {}) {
         this.config = config;
         this.listElement = document.querySelector(this.config.parent.selector);
-        document
-            .querySelector(CONFIG.parent.selector)
-            .addEventListener('click',function(e) {
-                const element = e.target;
-                //@Handle Events:
-                if(element.hasAttribute('data-action')) {
-                    const parentActionElement = element.parentNode;
-                    const { id } = parentActionElement.dataset;
-                    switch (element.dataset.action) {
-                        case "delete":
-                            todoList.deleteTask(id);
-                            break;
-                        default:
-                            return;
-                    }
-                }
-            })
     }
     init() {
         this.render(storage.items);
@@ -100,6 +102,14 @@ class TodoList {
         const items = storage.removeItem(id);
         this.render(items);
     }
+    updateStatus(id) {
+        const index = storage.itemIndex(id);
+        let { isDone: currentStatus } = storage.items[index];
+        const updated = storage.updateItem(id, {isDone: !currentStatus});
+        if(updated) {
+            this.render(updated)
+        }
+    }
     createItemElement(item) {
         let nodeItem = document.createElement(this.config.item.element);
         const attrs = this.config.item.attrs;
@@ -108,6 +118,7 @@ class TodoList {
             nodeItem.setAttribute(`${attr}`, `${attrs[attr]}`);
         });
         nodeItem.setAttribute('data-level', `${item.level}`);
+        nodeItem.setAttribute('data-completed', `${item.isDone}`)
         const itemContent = `
             <div class="todo-item__content">
                 ${item.name}
@@ -116,6 +127,9 @@ class TodoList {
             class="todo-item__actions"
             data-id=${item.id}
             >
+                <div
+                data-action="status" 
+                class="icon ${item.isDone ? 'i-done' : 'i-check'}"></div>
                 <div
                 data-action="delete" 
                 class="icon i-delete"></div>
@@ -143,3 +157,23 @@ document
             this.value = "";
         }
     });
+document
+    .querySelector(CONFIG.parent.selector)
+    .addEventListener('click',function(e) {
+        const element = e.target;
+        //@Handle Events:
+        if(element.hasAttribute('data-action')) {
+            const parentActionElement = element.parentNode;
+            const { id } = parentActionElement.dataset;
+            switch (element.dataset.action) {
+                case "delete":
+                    todoList.deleteTask(id);
+                    break;
+                case "status":
+                    todoList.updateStatus(id);
+                    break;
+                default:
+                    return;
+            }
+        }
+    })

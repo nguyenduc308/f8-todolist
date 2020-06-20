@@ -59,11 +59,19 @@
                     opacity: 1;
                 }
             }
+            .i-done {
+                opacity: 1;
+            }
         }
     }
-    .todo-item[data-level="2"]{
+    .todo-item[data-level="2"] {
         background-color: $danger-color-light;
         border: 1px solid $danger-color-dark;
         color: $danger-color-dark;
     }
+    .todo-item[data-completed="true"] {
+        background-color: $gray-color-light;
+        text-decoration: line-through;
+        border: none;
+    } 
 }
