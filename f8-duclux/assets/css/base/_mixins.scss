@@ -18,3 +18,8 @@
     display: flex;
     justify-content: center;
 }
+@mixin background($image, $size, $repeat){
+    background: $image;
+    background-size: $size;
+    background-repeat: $repeat;
+}

@@ -1,0 +1,13 @@
+.icon {
+    width: 18px;
+    height: 18px;
+}
+.i-delete {
+    @include background(url('../images/i-delete.svg'), contain, no-repeat);
+}
+.i-check {
+    @include background(url('../images/i-check.svg'), contain, no-repeat);
+}
+.i-done {
+    @include background(url('../images/i-done.svg'), contain, no-repeat);
+}
