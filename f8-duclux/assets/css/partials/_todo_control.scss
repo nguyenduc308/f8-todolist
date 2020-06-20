@@ -1,0 +1,12 @@
+.todo-control {
+    padding: 2rem;
+    
+    &__form {
+        &-input {
+            border: 1px solid $gray-color-light;
+            border-radius: 4px;
+            padding: .6rem 1rem;
+            width: 100%;
+        }
+    }
+}

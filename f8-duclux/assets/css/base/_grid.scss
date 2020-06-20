@@ -1,0 +1,67 @@
+.grid {
+    display: block;
+}
+.wide {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.d-none {
+    display: none;
+}
+@for $i from 1 through 12 {
+    .col-#{$i} {
+        display: block;
+        flex: 0 0 calc(100%/12 * #{$i});
+        max-width: calc(100%/12 * #{$i});
+    }   
+}
+@media screen and (min-width: $breakpoint-md) and (max-width: $breakpoint-lg) {
+    .d-md-block {
+        display: block;
+    }
+    .d-md-none {
+        display: none;
+    }
+    @for $i from 1 through 12 {
+    .col-md-#{$i} {
+        display: block;
+        flex: 0 0 calc(100%/12 * #{$i});
+        max-width: calc(100%/12 * #{$i});
+    }   
+}  
+}
+@media screen and (min-width: $breakpoint-lg) and (max-width: $breakpoint-xl) {
+    .d-lg-block {
+        display: block;
+    }
+    .d-lg-none {
+        display: none;
+    }
+    @for $i from 1 through 12 {
+    .col-lg-#{$i} {
+        display: block;
+        flex: 0 0 calc(100%/12 * #{$i});
+        max-width: calc(100%/12 * #{$i});
+    }   
+}  
+}
+
+@media screen and (min-width: $breakpoint-xl) {
+    .d-xl-block {
+        display: block;
+    }
+    .d-xl-none {
+        display: none;
+    }
+    @for $i from 1 through 12 {
+    .col-md-#{$i} {
+        display: block;
+        flex: 0 0 calc(100%/12 * #{$i});
+        max-width: calc(100%/12 * #{$i});
+    }   
+}  
+}
