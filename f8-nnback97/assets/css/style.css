@@ -1,0 +1,95 @@
+* {
+  box-sizing: content-box;
+  margin: 0;
+  padding: 0;
+}
+
+.Responsive {
+  margin: 20px auto;
+  max-width: 1024px;
+  padding: 20px;
+}
+
+.Header {
+  border: 1px solid #ddd;
+  margin-bottom: 15px;
+  padding: 10px;
+  text-align: left;
+}
+
+.Header h1 {
+  padding-left: 10px;
+}
+
+.Main {
+  border: 1px solid #ddd;
+  display: flex;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.Main-item {
+  width: 49%;
+}
+
+.Main-item-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid #ddd;
+  margin-bottom: 7px;
+}
+
+.Main-item-form__btn {
+  padding: 5px;
+}
+
+.Main-item-form__txt {
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+.Main-item-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Main-item-list-new {
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 5px 5px;
+  min-height: 93px;
+  padding: 8px;
+  width: 44%;
+}
+
+.Main-item-list-new__txt {
+  margin-bottom: 10px;
+}
+
+.Main-item-list-new-check__label {
+  margin-left: 10px;
+}
+
+.Main-item .Main-item-list {
+  margin: 0 -5px;
+}
+
+.Main-item--last {
+  border: 1px solid #ddd;
+  margin: 15px 0;
+  padding: 20px;
+  width: 100%;
+}
+
+.Main-item--last .Main-item-list-new {
+  width: 22%;
+}
+
+.Main-item--second {
+  margin-left: 15px;
+}
+
