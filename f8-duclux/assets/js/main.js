@@ -49,7 +49,7 @@ class Storage {
                 ...items.slice(index+1)
             ]
             this.saved();
-            return items;
+            return this.state.items;
         }
         return false;
     }
