@@ -1,0 +1,119 @@
+
+/* ----------------header--------------------- */
+#header{
+    border-bottom: 1px solid #ccc;
+    height: 50px;
+    border-radius: 2px;
+}
+
+.header-logo{
+    position: relative;
+    top: -5px;
+}
+
+.header-title{
+    font-size: 3rem;
+    padding-left: 20px;
+}
+
+/* ------------------main-content------------- */
+/* -----------------add----------------------- */
+#main-content{
+    margin-top: 20px;
+    border-radius: 2px;
+    padding: 10px;
+}
+
+
+.add{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    min-height: 40px;   
+    padding: 20px;
+    cursor: pointer;
+}
+
+.add-icon,
+.add-title {
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.add-icon {
+    margin-right: 20px;
+}
+
+.add-content{
+    margin-top: 15px;
+}
+
+.add-input__title{
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 1.4rem;
+    outline: none;
+}
+
+.add-input__cmt{
+    margin-top: 15px;
+    width: 100%;
+    font-size: 1.4rem;
+    padding: 15px;
+    outline: none;
+}
+
+/* --------------------------note----------------------- */
+.note{
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    /* max-height: 44px;
+    overflow: hidden; */
+}
+
+.note-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 40px;
+    padding: 0 10px;
+}
+
+.note-check{
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.note-check-input{
+    margin-bottom: -3px;
+}
+
+.note-check-label{
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding-left: 12px;
+    margin-top: 5px;
+}
+
+.note-title__btn{
+    background-color: transparent;
+    border: none;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.note-content{
+    padding: 10px;
+    font-size: 1.4rem;
+}
+
+
+.fa-trash-alt {
+    opacity: 0; 
+}
+
+.note-checked .fa-trash-alt {
+    opacity: 1;
+}
