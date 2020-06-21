@@ -163,6 +163,7 @@ class TodoList {
     createItemElement(item) {
         let nodeItem = document.createElement(this.config.item.element);
         const attrs = this.config.item.attrs;
+        const time = new Date(item.timestamp).toLocaleDateString().split('/').slice(0,2).reverse().join('/');
         const attrsKey = Object.keys(attrs)
         attrsKey.forEach(attr => {
             nodeItem.setAttribute(`${attr}`, `${attrs[attr]}`);
@@ -182,13 +183,16 @@ class TodoList {
             class="todo-item__actions"
             data-id=${item.id}
             >
+                <div class="todo-item__timestamp">
+                    ${time}
+                </div>
                 <div
                 data-action="status" 
                 class="icon ${item.isDone ? 'i-done' : 'i-check'}"></div>
                 <div
                 data-action="delete" 
                 class="icon i-delete"></div>
-            </div>
+            </>
             `
         nodeItem.innerHTML = itemContent;
         return nodeItem;

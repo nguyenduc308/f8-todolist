@@ -495,7 +495,7 @@ ul, li, h1, h2, h3, h4, h5, h6 {
   border-radius: 4px;
   position: relative;
   font-size: 1.8rem;
-  border: 1px solid #856404;
+  border: 1px solid #cabe9b;
   background-color: #f7f7d0;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
@@ -532,6 +532,7 @@ ul, li, h1, h2, h3, h4, h5, h6 {
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 .todo-list .todo-item__actions .icon {
   margin-right: 8px;
@@ -543,6 +544,10 @@ ul, li, h1, h2, h3, h4, h5, h6 {
 }
 .todo-list .todo-item__actions .i-done {
   opacity: 1;
+}
+.todo-list .todo-item__timestamp {
+  margin-right: 2.4rem;
+  color: #39cc15;
 }
 .todo-list .important {
   position: absolute;
