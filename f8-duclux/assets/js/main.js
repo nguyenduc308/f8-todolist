@@ -163,6 +163,7 @@ class TodoList {
     createItemElement(item) {
         let nodeItem = document.createElement(this.config.item.element);
         const attrs = this.config.item.attrs;
+        const time = new Date(item.timestamp).toLocaleDateString().split('/').slice(0,2).reverse().join('/');
         const attrsKey = Object.keys(attrs)
         attrsKey.forEach(attr => {
             nodeItem.setAttribute(`${attr}`, `${attrs[attr]}`);
@@ -177,17 +178,21 @@ class TodoList {
             >
                 ${item.name}
             </div>
+            ${item.level === "2"? '<div class="important icon i-important"></div>' : ""}
             <div 
             class="todo-item__actions"
             data-id=${item.id}
             >
+                <div class="todo-item__timestamp">
+                    ${time}
+                </div>
                 <div
                 data-action="status" 
                 class="icon ${item.isDone ? 'i-done' : 'i-check'}"></div>
                 <div
                 data-action="delete" 
                 class="icon i-delete"></div>
-            </div>
+            </>
             `
         nodeItem.innerHTML = itemContent;
         return nodeItem;
@@ -235,7 +240,10 @@ document
     .querySelector('#task-name')
     .addEventListener('keyup', function(e) {
         if(e.keyCode === 13) {
-            todoList.addTask(this.value);
+            let importantElement = document.querySelector('#task-important')
+            const level = importantElement.checked ? "2" : "1";
+            todoList.addTask(this.value, level);
+            importantElement.checked = false;
             this.value = "";
         }
     });
