@@ -11,3 +11,6 @@
 .i-done {
     @include background(url('../images/i-done.svg'), contain, no-repeat);
 }
+.i-important {
+    @include background(url('../images/i-important.svg'), contain, no-repeat);
+}

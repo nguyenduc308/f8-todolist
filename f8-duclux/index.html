@@ -28,20 +28,31 @@
             <div class="grid wide">
                 <div class="content">
                     <div class="row">
-                        <div class="col-12 col-md-4 col-xl-4">
+                        <div class="col-12 col-md-6 col-xl-6">
                             <div class="todo-control">
-                                <div class="todo-control__form form-group">
-                                    <input
-                                    id="task-name"
-                                    type="text"
-                                    class="todo-control__form-input form-control"
-                                    placeholder="What's next ?"
-                                    spellcheck="false"
-                                    >
+                                <div class="todo-control__form">
+                                    <div class="form-group todo-control__form-input">
+                                        <input
+                                        id="task-name"
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="What's next ?"
+                                        spellcheck="false"
+                                        />
+                                    </div>
+                                    <div class="form-group todo-control__form-tick">
+                                        <input 
+                                        type="checkbox"
+                                        id="task-important"
+                                        class="checkbox"
+                                        hidden
+                                        />
+                                        <label for="task-important">Important</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-8 col-xl-8">
+                        <div class="col-12 col-md-6 col-xl-6">
                             <div class="todo-control__others">
                                 <div class="clock" id="clock"></div>
                             </div>

@@ -49,6 +49,12 @@ ul, li, h1, h2, h3, h4, h5, h6 {
   background-repeat: no-repeat;
 }
 
+.i-important {
+  background: url("../images/i-important.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .grid {
   display: block;
 }
@@ -419,12 +425,48 @@ ul, li, h1, h2, h3, h4, h5, h6 {
 .todo-control {
   padding: 2rem;
 }
+.todo-control__form {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
 .todo-control__form-input {
+  flex: 0 0 80%;
+}
+.todo-control__form-input .form-control {
+  width: 100%;
   border: 1px solid #efefef;
   border-radius: 4px;
-  padding: 1.2rem 1rem;
-  width: 100%;
+  padding: 1.4rem 1rem;
   font-size: 1.8rem;
+  height: 100%;
+}
+.todo-control__form-tick {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.todo-control__form-tick label {
+  height: 100%;
+  margin: 0 1rem;
+  padding: 0 1rem;
+  background-color: #efefef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  user-select: none;
+  cursor: pointer;
+  color: #ccc;
+  border: 1px solid transparent;
+}
+.todo-control__form-tick .checkbox:checked ~ label {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #721c24;
 }
 .todo-control__others {
   height: 100%;
@@ -493,7 +535,7 @@ ul, li, h1, h2, h3, h4, h5, h6 {
 }
 .todo-list .todo-item__actions .icon {
   margin-right: 8px;
-  opacity: 0.6;
+  opacity: 0.4;
   cursor: pointer;
 }
 .todo-list .todo-item__actions .icon:hover {
@@ -501,6 +543,13 @@ ul, li, h1, h2, h3, h4, h5, h6 {
 }
 .todo-list .todo-item__actions .i-done {
   opacity: 1;
+}
+.todo-list .important {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2.4rem;
+  height: 2.4rem;
 }
 .todo-list .todo-item[data-level="2"] {
   background-color: #f8d7da;

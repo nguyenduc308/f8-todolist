@@ -53,7 +53,7 @@
 
             .icon {
                 margin-right: 8px;
-                opacity: .6;
+                opacity: .4;
                 cursor: pointer;
                 &:hover {
                     opacity: 1;
@@ -63,6 +63,13 @@
                 opacity: 1;
             }
         }
+    }
+    .important {
+        position: absolute;
+        top: .5rem;
+        right: .5rem;
+        width: 2.4rem;
+        height: 2.4rem;
     }
     .todo-item[data-level="2"] {
         background-color: $danger-color-light;

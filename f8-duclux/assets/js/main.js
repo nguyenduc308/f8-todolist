@@ -177,6 +177,7 @@ class TodoList {
             >
                 ${item.name}
             </div>
+            ${item.level === "2"? '<div class="important icon i-important"></div>' : ""}
             <div 
             class="todo-item__actions"
             data-id=${item.id}
@@ -235,7 +236,10 @@ document
     .querySelector('#task-name')
     .addEventListener('keyup', function(e) {
         if(e.keyCode === 13) {
-            todoList.addTask(this.value);
+            let importantElement = document.querySelector('#task-important')
+            const level = importantElement.checked ? "2" : "1";
+            todoList.addTask(this.value, level);
+            importantElement.checked = false;
             this.value = "";
         }
     });

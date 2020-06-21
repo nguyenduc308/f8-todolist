@@ -2,12 +2,41 @@
     padding: 2rem;
     
     &__form {
+        width: 100%;
+        height: 50px;
+        @include flex-row-center;
         &-input {
-            border: 1px solid $gray-color-light;
-            border-radius: 4px;
-            padding: 1.2rem 1rem;
-            width: 100%;
-            font-size: 1.8rem;
+            flex: 0 0 80%;
+            .form-control {
+                width: 100%;
+                border: 1px solid $gray-color-light;
+                border-radius: 4px;
+                padding: 1.4rem 1rem;
+                font-size: 1.8rem;
+                height: 100%;
+            }
+        }
+        &-tick {
+            flex: 1;
+            height: 100%;
+            @include flex-center;
+            label {
+                height: 100%;
+                margin: 0 1rem;
+                padding: 0 1rem;
+                background-color: $gray-color-light;
+                @include flex-center;
+                border-radius: 4px;
+                user-select: none;
+                cursor: pointer;
+                color: $gray-color-dark;
+                border: 1px solid transparent;
+            }
+            .checkbox:checked~label {
+                background-color: $danger-color-light;
+                color: $danger-color-dark;
+                border-color: $danger-color-dark;
+            }
         }
     }
     &__others {
