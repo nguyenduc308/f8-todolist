@@ -1,4 +1,7 @@
 const CONFIG = {
+    clock: {
+        selector: "#clock"
+    },
     parent: {
         selector: "#todo-list",
     },
@@ -10,6 +13,44 @@ const CONFIG = {
         }
     }
 }
+class Clock {
+    config;
+    clockElement;
+    date = new Date();
+    timerId;
+    constructor(config = {clock: {selector: 'body'}}) {
+        this.config = config;
+        this.clockElement = document.querySelector(this.config.clock.selector);
+    }
+    init() {
+        this.timerId = setInterval(this.showTime.bind(this), 1000);
+    }
+    showTime() {
+        this.date = new Date();
+        const { h, m, s, session } = this.formatTime(this.date);
+        const timer = h + ":" + m + ":" + s + " " + session;
+        this.clockElement.innerText = timer;
+    }
+    formatTime(date) {
+        let session = "AM";
+        let h = date.getHours(), m = date.getMinutes(), s = date.getSeconds()
+        if(h == 0) {
+            h = 12;
+        }
+        if (h > 12) {
+            h = h - 12;
+            session = "PM";
+        }
+        h = (h < 10) ? "0" + h : h;
+        m = (m < 10) ? "0" + m : m;
+        s = (s < 10) ? "0" + s : s;
+        return {h,m,s, session};
+    }
+    onDestroy() {
+        clearInterval(this.timerId);
+    }
+}
+const clock = new Clock(CONFIG);
 class Storage {
     state = {
         items: [],
@@ -188,7 +229,8 @@ function handleEvent(event) {
 const todoList = new TodoList(CONFIG);
 
 //Started;
-todoList.init()
+todoList.init();
+clock.init();
 document
     .querySelector('#task-name')
     .addEventListener('keyup', function(e) {

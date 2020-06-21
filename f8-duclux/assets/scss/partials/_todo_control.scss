@@ -10,4 +10,12 @@
             font-size: 1.8rem;
         }
     }
+    &__others {
+        height: 100%;
+        @include flex-center;
+        .clock {
+            font-size: 2.8rem;
+            letter-spacing: .5rem;
+        }
+    }
 }
