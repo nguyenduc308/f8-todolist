@@ -126,12 +126,14 @@ class TodoItem {
 class TodoList {
     config;
     listElement;
+    tasks = [];
     constructor(config = {}) {
         this.config = config;
         this.listElement = document.querySelector(this.config.parent.selector);
+        this.tasks = storage.items;
     }
     init() {
-        this.render(storage.items);
+        this.render(this.tasks);
     }
     addTask(name, level) {
         if(name.trim()) {
