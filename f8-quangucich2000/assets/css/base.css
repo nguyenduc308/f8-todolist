@@ -11,3 +11,8 @@ html {
 form {
     outline: none;
 }
+
+.max-height1{
+    max-height: 64px;
+    overflow: hidden;
+}

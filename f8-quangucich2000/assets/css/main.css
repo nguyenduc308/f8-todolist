@@ -45,6 +45,7 @@
 
 .add-content{
     margin-top: 15px;
+    transition: 1s;
 }
 
 .add-input__title{
@@ -90,6 +91,15 @@
     margin-bottom: -3px;
 }
 
+.note-check-input:checked ~ .note-check-label{
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.note-delete {
+    display: inline-block;
+}
+
 .note-check-label{
     font-size: 1.4rem;
     font-weight: 500;
@@ -102,6 +112,7 @@
     border: none;
     font-size: 1.4rem;
     font-weight: 600;
+    outline: none !important;
 }
 
 .note-content{
@@ -110,10 +121,4 @@
 }
 
 
-.fa-trash-alt {
-    opacity: 0; 
-}
 
-.note-checked .fa-trash-alt {
-    opacity: 1;
-}
